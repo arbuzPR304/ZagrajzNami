@@ -1,0 +1,8 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Pozdrowienia z {{ site_name }}!
+
+Dostales email, poniewaz uzytkownik {{ user_display }} portalu {{ site_domain }} podal twoj e-mail.
+
+Aby potwierdzic e-mail, wejdz pod {{ activate_url }}
+{% endblocktrans %}{% endautoescape %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Podzienkowania od {{ site_name }}!
+{{ site_domain }}{% endblocktrans %}

@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>{% block title %}{% endblock %}Zagraj Z Nami</title>
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+      {% include 'extra_head_info.html' %}
+      {% include 'javascript.html' %}
+    <script>
+  $(function(){
+      $( document ).ready(function(){
+        $.ajax({
+          type: "POST",
+          url: "{% url 'get_notifications_ajax' %}",
+          data: {
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+          },
+            success: function(data){
+              var count = data.count
+              $("#notifyCount").html(count);
+              },
+          error: function(rs, e) {
+            console.log(rs);
+            console.log(e);
+          }
+          });
+        });
+      });
+    $(document).ready(function(){
+      $(".notification-toggle").click(function(e){
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "{% url 'get_notifications_ajax' %}",
+          data: {
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+          },
+            success: function(data){
+              $("#notification_dropdown").html('<li class="dropdown-header">Powiadomienia</li>');
+            var count = data.count
+            $("#notifyCount").html(count);
+            console.log(count)
+            if (count == 0) {
+              var url = '{% url "notifications_all" %}'
+              $("#notification_dropdown").append("<li><a href='" + url+ "'>Zobacz wszytkie powiadomienia</a></li>")
+            } else {
+              $(data.notifications).each(function(){
+                var link = this;
+                $("#notification_dropdown").append("<li>" + link + "</li>")
+              })
+            }
+            console.log(data.notifications);
+          },
+          error: function(rs, e) {
+            console.log(rs);
+            console.log(e);
+          }
+        })
+      })
+    })
+    </script>
+      {% block style %}  
+      {% endblock %}
+
+  </head>
+
+  <body>
+      <div class="nav" style ="margin-bottom:50px;">
+        {% include 'navbar.html' %}
+      </div>
+
+        <!-- <div class="container"> -->
+          {% block content %}
+          {% endblock %}
+        <!-- /container -->
+  </body>
+</html>

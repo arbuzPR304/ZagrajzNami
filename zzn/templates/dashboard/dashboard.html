@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}{{request.user.username}} {% endblock %}
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="{% static 'css/add_env.css' %}"> -->
+    <style>
+            /* make sidebar nav vertical */ 
+        .row2{
+            margin: 10px;
+        }
+        .event{
+            font-family: sans-serif;
+            margin:5px;
+            padding: 10px;
+            outline: 1px solid #eee;
+        }
+        .event:hover{
+            background-color: #eee;
+        }
+        .event a{
+            text-decoration: none;
+        }
+        @media (min-width: 768px) {
+          .sidebar-nav .navbar .navbar-collapse {
+            padding: 0;
+            max-height: none;
+          }
+          .sidebar-nav .navbar ul {
+            float: none;
+            display: block;
+          }
+          .sidebar-nav .navbar li {
+            float: none;
+            display: block;
+          }
+          .sidebar-nav .navbar li a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+          }
+        }
+        .row{
+            padding-top: 4%;
+        }
+
+    </style>
+    <script>
+        $(function(){
+           $( ".navbar-toggle" ).click(function(event ) {
+                $( "navbar-collapse sidebar-navbar-collapse collapse in" ).removeClass( "in" );
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="sidebar-nav">
+          <div class="navbar navbar-default" role="navigation">
+            <!-- <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <span class="visible-xs navbar-brand">Sidebar menu</span>
+            </div> -->
+            <div class="navbar-collapse sidebar-navbar-collapse collapse in">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'dashboard' %}">Panel konta</a></li>
+                <li><a href="/profile/{{request.user.username}}">Widok mojego konta</a></li>
+                <li><a href="{% url 'spoort_env' %}">Utwórz wydarzenie</a></li>
+                <li><a href="{% url 'find_sport_env' %}">Znajdź wydarzenie</a></li>
+                <li><a href="{% url 'your_event' %}">Twoje wydarzenia</a></li>
+                <li><a href="{% url 'edit' %}">Edycja konta</a></li>
+                <li><a href="{% url 'notifications_all' %}">Powiadomienia</a></li>
+                <li><a href="{% url 'account_change_password' %}">Zmiana hasła</a></li>
+                <li><a href="{% url 'remove_profile_views' %}">Usuń konto</a></li>
+                <li><a href="{% url 'account_logout' %}">Wyloguj</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+            
+          <div class="col-md-6">
+            <h3 class="page-header">
+                Dzisiejsze organizowane wydarzenia:
+            </h3>
+            {% for event in my_organised_event %}
+                {% if event.is_past_due %}
+                    <div class="inactive_your event inactive">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-12  title">{{ event.title }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.time_event|time:"H:i" }}</div>
+                        
+                            <div class="col-md-8 col-xs-8">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.date_event|date:"j-n-y" }}</div>
+                        
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-4 col-xs-6"><span style="color:red;">Zakonczone</span></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="active_your event active your">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-12 title">{{ event.title }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.time_event|time:"H:i" }}</div>
+                        
+                            <div class="col-md-8 col-xs-8">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-4 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
+                       
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-4 col-xs-6"><a href='/event/edit/{{event.pk}}'> Edycja ...</a></div>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        
+        </div>
+
+        <div class="col-md-6">
+            <h3 class="page-header">
+                Dzisiejsze wydzarzenia, w których bierzesz udzial:
+            </h3>
+            {% for event in my_event %}
+                {% if event.is_past_due %}
+                    <div class="inactive_all event inactive all">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-12 title">{{ event.title }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.time_event|time:"H:i" }}</div>
+                        
+                        
+                            <div class="col-md-8 col-xs-8">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.date_event|date:"j-n-y" }}</div>
+                       
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-4 col-xs-6"><span style="color:red;">Zakonczone</span></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="active_all event active all">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-12 title">{{ event.title }}</div>
+                            <div class="col-md-4 col-xs-4">{{ event.time_event|time:"H:i" }}</div>
+                            
+                            <div class="col-md-8 col-xs-8">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-4 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
+                            
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-4 col-xs-6"><span style="color:green;">Aktywne</span></div>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+
+            {% endfor %}
+            <div id="all_tab"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+

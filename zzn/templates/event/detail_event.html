@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}{{request.user.username}} {% endblock %}
+{% block style %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    
+ 
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>    
+        <style>
+        .row2{
+            margin: 10px;
+        }
+        .quantity{
+            /*font-family:cursive;*/
+        }
+        #mapka{
+                width: 700px;
+                height: 500px;
+                border: 1px solid #eee;
+                background: gray;
+            }
+
+        @media screen and (max-width: 768px) {
+            #mapka{
+                width: 420px;
+                height: 450px;
+                border: 1px solid #eee;
+                background: gray;
+            }
+        }
+
+
+        @media screen and (max-width: 500px) {
+            #mapka{
+                width: 250px;
+                height: 450px;
+                border: 1px solid #eee;
+                background: gray;
+            }
+        }
+
+        </style>
+        <script type="text/javascript">   
+        <!--
+        function myFunction() {
+            document.getElementById("rules").display =inline;
+            }   
+
+            var mapa;   // obiekt globalny
+            var dymek;  // okno z informacjami
+            var geokoder = new google.maps.Geocoder();
+                        
+            function mapaStart()  
+            {  
+                var wspolrzedne = new google.maps.LatLng(53.429805, 14.537883);
+                var opcjeMapy = {
+                    zoom: 18,
+                    center: wspolrzedne,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: false
+                };
+                mapa = new google.maps.Map(document.getElementById("mapka"), opcjeMapy);            
+                dymek = new google.maps.InfoWindow();
+                
+                geokoder.geocode({address: '{{event.city}}, {{event.address}} {{event.number_street}}'}, obslugaGeokodowania);
+            }  
+            
+            function obslugaGeokodowania(wyniki, status)
+            {
+                var rozmiar             = new google.maps.Size(32,32);
+                var rozmiar_cien        = new google.maps.Size(59,32);
+                var punkt_startowy      = new google.maps.Point(0,0);
+                var punkt_zaczepienia   = new google.maps.Point(16,16);
+                
+                var ikona   = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52.png", rozmiar, punkt_startowy, punkt_zaczepienia);
+                var cien    = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52s.png", rozmiar_cien, punkt_startowy, punkt_zaczepienia);
+                
+                if(status == google.maps.GeocoderStatus.OK)
+                {
+                    mapa.setCenter(wyniki[0].geometry.location);
+                    var marker = new google.maps.Marker(
+                        {
+                            map:        mapa, 
+                            position:   wyniki[0].geometry.location,
+                            icon:       ikona,
+                            shadow:     cien
+                        }
+                    );
+                    dymek.open(mapa, marker);
+                    dymek.setContent('<strong>Organizowane wydarzenie:</strong><br />{{event.city}}, {{event.address}} {{event.number_street}}');
+                }
+                else
+                {
+                    alert("Nie znalazłem podanego adresu!");
+                }
+            }
+            $(function(){
+
+                $( document ).ready(function(event) {
+                    event.preventDefault
+                    var userRequest = "{{ user.get_username }}";
+                    $.ajax({
+                        type:"GET",
+                        url:"/ajax_eventReady/{{event.id}}",
+                        success: function(data){
+
+                            console.log(data);
+                            var htmlText = "";
+                            element = data['element']
+                            data = data['user']
+                            if (!element['buttonInfo']){
+                                document.getElementById("maxiAmount").innerHTML  = element['buttonStr'];
+                            }
+                            else{
+                                document.getElementById("changeEnv").className  = "tn btn-"+element['buttonInfo']+" btn-lg";
+                                document.getElementById("changeEnv").innerHTML  = element['buttonStr'];
+                            }
+                            document.getElementById("howPlayers").innerHTML = element['howPlayers'];
+                            document.getElementById("freePlace").innerHTML = element['freePlace'];
+                            howPlayers
+
+                            for (x in data){
+                                htmlText=htmlText+ 
+                                '<div class="col-md-2 col-xs-6"><p align="center"><img src = '+data[x][2]+' class="img-circle" alt="Cinque Terre" width="180" height="180"><a href='+data[x][1]+' target="_blank">'+data[x][0]+'</a></p><br></div>';
+                            }
+                            document.getElementById("AjaxContent").innerHTML = htmlText;
+
+                        },
+                        error: function(response,error){
+                            console.log(response);
+                            console.log(error);
+
+                        }
+                    })//ajax
+                    });
+
+                $('#changeEnv').click(function(event){
+                    event.preventDefault
+                    var userRequest = "{{ user.get_username }}";
+                    $.ajax({
+                        type:"GET",
+                        url:"/ajax_event/{{event.id}}",
+                        success: function(data){
+                            console.log(data);
+                            var htmlText = "";
+                            element = data['element']
+                            data = data['user']
+                            if (!element['buttonInfo']){
+                                document.getElementById("maxiAmount").innerHTML  = element['buttonStr'];
+                            }
+                            else{
+                                document.getElementById("changeEnv").className  = "tn btn-"+element['buttonInfo']+" btn-lg";
+                                document.getElementById("changeEnv").innerHTML  = element['buttonStr'];
+                            }
+                            document.getElementById("howPlayers").innerHTML = element['howPlayers'];
+                            document.getElementById("freePlace").innerHTML = element['freePlace'];
+
+                            for (x in data){
+                                htmlText=htmlText+ 
+                                '<div class="col-md-2 col-xs-6"><p align="center"><img src = '+data[x][2]+' class="img-circle" alt="Cinque Terre" width="180" height="180"><a href='+data[x][1]+' target="_blank">'+data[x][0]+'</a></p><br></div>';
+                            }
+                            document.getElementById("AjaxContent").innerHTML = htmlText;
+
+                        },
+                        error: function(response,error){
+                        }
+                    })//ajax
+                });
+            });
+
+
+
+</script>
+
+
+{% endblock %}
+
+{% block content %}
+    <body onload="mapaStart()">      
+
+        <!-- Page Content -->
+<div class="container">
+        <!-- {{profile.get_absolute_url}} -->
+        <!-- Portfolio Item Heading -->
+        <div class="row row2">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        {{event.title}}
+                </h1>
+            </div>
+        </div>
+
+
+    <div class="row">
+
+        <div class="col-md-4 col-xs-12">
+            <div class="col-md-6 col-xs-6"><p align="center">Organizator: </p><br>
+            </div>
+            <div class="col-md-6 col-xs-6">
+               <p align="center"> Dyscyplina:</p><br>
+            </div>
+            <div class="col-md-6 col-xs-6"></div><div class="col-md-6 col-xs-6"></div>
+            <div class="row">
+            <div class="col-md-6 col-xs-6">
+                <p align="center"><img src="{{profile.picture.url}}" class="img-circle" alt="Cinque Terre" width="130" height="130"></p>
+
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <p align="center"><img src="{{event.profession_choose.picture.url}}" width="120" height="120"></p>
+            </div>
+        </div>
+            <div class="row">
+                
+            <div class="col-md-6 col-xs-6"><p align="center"><a href='{{profile.get_absolute_url}}' target="_blank">{{event.organizer}}</a></p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">{{event.profession_choose.name}}</p></div>
+
+        </div>
+                <div class="col-md-6 col-xs-6"><p align="center">Ilość zawodników:</p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">Wolne miejsca:</p></div>
+            
+            <div class="quantity" style="font-size:30px">
+                <div class="col-md-6 col-xs-6"><p align="center" id="howPlayers"></p></div>
+                <div class="col-md-6 col-xs-6"><p align="center" id="freePlace"></p></div>
+            </div>
+
+            
+                <div class="col-md-6 col-xs-6"><p align="center">Data rozpoczęcia:</p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">Godzina rozpoczęcia:</p></div>
+            
+
+            <div class="quantity" style="font-size:25px">
+                <div class="col-md-6 col-xs-6"><p align="center">{{event.date_event|date:"j-n-y"}}</p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">{{event.time_event|time:"H:i"}}</p></div>
+            </div>
+
+            <div class="row">
+                <div class=" col-md-6 col-xs-6"><p align="center">Czas trwania:</p></div>
+                <!-- <div class="col-md-6"><p align="center">Zasady</p></div> -->
+                <div class="col-md-6 col-xs-6"> </div>
+
+            </div>
+           
+                <div class="quantity col-md-6 col-xs-6"  style="font-size:25px"> <p align="center">{{event.duration|time:"H:i"}}</p></div>
+                <!-- <div class="col-md-6"><p align="center"><a href="#" onclick="myFunction()">Więcej ...</a></p></div> -->
+            
+            
+            <div class="quantity">
+                <div class="col-md-12 col-xs-12"><p align="center" id="maxiAmount"><button id="changeEnv" class=""></button></p></div>
+                
+            </div>
+        </div>
+        
+        <div class="col-md-0 col-xs-1"></div>
+
+        <div class="col-md-8 col-xs-11">
+                <div id="mapka"></div> 
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+         <div class="row row2">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Zawodnicy
+                </h1>
+            </div>
+        </div>
+
+        <AjaxContent id ="AjaxContent"></AjaxContent>
+
+        
+        </div>
+
+    <div class="row" id ="rules">
+         <div class="row row2">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Od organizatora
+                </h1>
+                {{event.rules}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+         <div class="row row2">
+            <div class="col-sm-12">
+                <h1 class="page-header">
+                    Komentarze 
+                </h1>
+                {% if comment_form %}
+                    Napisane {{comments.count}} komentarze na 30 dozwolonych.
+                    <form method ="POST" action=''>{%csrf_token%}
+                        {{comment_form| crispy}}
+                        <input type='submit' class="tn btn-success btn-lg" value='Skomentuj'/>
+                    </form>
+                {% else %}
+                    <button class="tn btn-warning btn-lg">Nie można dodać więcej komentarzy</button>
+                    <br>
+                {% endif %}
+                <br/>
+                <table class='table'>
+                    {% for comment in comments %}
+                    <tr><td>{{ comment.get_comment }} 
+                        <br/><small>Dodane przez <a href="/profile/{{ comment.user }}">{{ comment.user }}</a> | {{ comment.timestamp|timesince }} temu </small>
+                        {% if not comment.is_child %}
+                        <ul>
+                            {% for child in comment.get_children %}
+                                <li>{{ child.get_comment }} <small>Dodane przez <a href="/profile/{{ child.user }}" target="_blank">{{ child.user }}</a></small></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+        
+
+
+
+        <footer>
+        <!-- Footer -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; FabrykaCodu.pl</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+    <!-- /.container -->
+</div>
+
+{% endblock %}
+

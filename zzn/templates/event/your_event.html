@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}{{request.user.username}} {% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <style>
+        .row2{
+            margin: 10px;
+        }
+        .event{
+            font-family: sans-serif;
+            margin:5px;
+            padding: 10px;
+            outline: 1px solid #eee;
+        }
+        .event:hover{
+            background-color: #eee;
+        }
+        .event a{
+            text-decoration: none;
+        }
+        .inactive{
+            display: none;
+        }
+
+        </style>
+        <script type="text/javascript">
+        function myFunction1(number) {
+              var elements = document.getElementsByClassName('active_your')
+              number = number*8;
+               for (var i = 0; i < elements.length; i++){
+                    elements[i].style.display = (i >=number-8 && i<number)? 'inherit':'none';
+                }
+            }
+
+        function myFunction2(number) {
+              var elements = document.getElementsByClassName('active_all')
+              number = number*8;
+               for (var i = 0; i < elements.length; i++){
+                    elements[i].style.display = (i >=number-8 && i<number)? 'inherit':'none';
+                }
+            }
+        function myFunction3(number) {
+              var elements = document.getElementsByClassName('inactive_your')
+              number = number*8;
+               for (var i = 0; i < elements.length; i++){
+                    elements[i].style.display = (i >=number-8 && i<number)?  'inherit':'none';
+                }
+            }
+        function myFunction4(number) {
+              var elements = document.getElementsByClassName('inactive_all')
+              number = number*8;
+               for (var i = 0; i < elements.length; i++){
+                    elements[i].style.display = (i >=number-8 && i<number)?  'inherit':'none';
+                }
+            }
+
+        $(function(){
+            var inactive_your = $('.inactive_your').length;
+            var inactive_all = $('.inactive_all').length;
+            var active_your = $('.active_your').length;
+            var active_all = $('.active_all').length;
+            
+            var active = true;
+
+            
+             $( document ).ready(function(){
+                var il_active_your = Math.ceil(active_your/8);
+                var il_active_all = Math.ceil(active_all/8);
+                console.log(il_active_your);
+                console.log(il_active_all);
+                element = document.getElementById("your_tab");
+                element2 = document.getElementById("all_tab");
+                var str_1_html =""
+                for(i=1;i<=il_active_your;i++){
+                    str_1_html = str_1_html+"<a href='#' onclick='myFunction1("+i+")'> ["+i+"] </a>";
+                }
+                var str_2_html =""
+                for(i=1;i<=il_active_all;i++){
+                    str_2_html = str_2_html+"<a href='#' onclick='myFunction2("+i+")'> ["+i+"] </a>";
+                }
+
+                $("#your_tab").html(str_1_html);
+                $("#all_tab").html(str_2_html);
+                myFunction1(1);
+                myFunction2(1);
+
+             });
+
+            $("#active_button").click(function(){
+                $('.inactive').css('display', 'none');
+                $('.active').css('display', 'inherit');
+
+                var il_active_your = Math.ceil(active_your/8);
+                var il_active_all = Math.ceil(active_all/8);
+                element = document.getElementById("your_tab");
+                element2 = document.getElementById("all_tab");
+                var str_1_html =""
+                for(i=1;i<=il_active_your;i++){
+                    str_1_html = str_1_html+"<a href='#' onclick='myFunction1("+i+")'> ["+i+"] </a>";
+                }
+                var str_2_html =""
+                for(i=1;i<=il_active_all;i++){
+                    str_2_html = str_2_html+"<a href='#' onclick='myFunction2("+i+")'> ["+i+"] </a>";
+                }
+                $("#your_tab").html(str_1_html);
+                $("#all_tab").html(str_2_html);
+                myFunction1(1);
+                myFunction2(1);
+            });
+            $("#inactive_button").click(function(){
+                $('.active').css('display', 'none');
+                $('.inactive').css('display', 'inherit');
+
+                var il_inactive_your = Math.ceil(inactive_your/8);
+                var il_inactive_all = Math.ceil(inactive_all/8);
+                element = document.getElementById("your_tab");
+                element2 = document.getElementById("all_tab");
+                var str_1_html =""
+                for(i=1;i<=il_inactive_your;i++){
+                    str_1_html = str_1_html+"<a href='#' onclick='myFunction3("+i+")'> ["+i+"] </a>";
+                }
+                var str_2_html =""
+                for(i=1;i<=il_inactive_all;i++){
+                    str_2_html = str_2_html+"<a href='#' onclick='myFunction4("+i+")'> ["+i+"] </a>";
+                }
+
+                $("#your_tab").html(str_1_html);
+                $("#all_tab").html(str_2_html);
+                myFunction3(1);
+                myFunction4(1);
+            });
+            
+        });
+        </script>
+{% endblock %}
+
+{% block content %}
+        <!-- Page Content -->
+    <div class="container">
+        <!-- {{profile.get_absolute_url}} -->
+        <!-- Portfolio Item Heading -->
+        <div class="row row2">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        {{title}}
+                </h1>
+                <button id="active_button" type="button" class="btn btn-success">Aktywne</button>
+                <!-- <button id="inactive_button" type="button" class="btn btn-danger">Nieaktywne</button> -->
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+    <div class="row row2">
+        <div class="col-md-6 col-xs-12">
+            <h3 class="page-header">
+                Organizowane wydarzenia:
+            </h3>
+            {% for event in my_organised_event %}
+                {% if event.is_past_due %}
+                    <div class="inactive_your event inactive ">
+                        <div class="row">
+                            <div class="col-md-9 title">{{ event.title }}</div>
+                            <div class="col-md-3 ">{{ event.time_event|time:"H:i" }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9 xs-col-9">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-3 xs-col-3">{{ event.date_event|date:"j-n-y" }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-3"><span style="color:red;">Nie aktywne</span></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="active_your event active your">
+                        <div class="row">
+                            <div class="col-md-9 col-xs-12 title">{{ event.title }}</div>
+                            <div class="col-md-3 col-xs-3">{{ event.time_event|time:"H:i" }}</div>
+                            <div class="col-md-9 col-xs-9">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-3 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
+                            <div class="col-md-9 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-3 col-xs-6"><a href='/event/edit/{{event.pk}}'> Edycja ...</a></div>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        
+            <div id="your_tab"></div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <h3 class="page-header">
+                Wszytkie twoje wydarzenia:
+            </h3>
+            {% for event in my_event %}
+                {% if event.is_past_due %}
+                    <div class="inactive_all event inactive all">
+                        <div class="row">
+                            <div class="col-md-9 title">{{ event.title }}</div>
+                            <div class="col-md-3">{{ event.time_event|time:"H:i" }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-3">{{ event.date_event|date:"j-n-y" }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-3"><span style="color:red;">Nie aktywne</span></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="active_all event active all">
+                        <div class="row">
+                           <div class="col-md-9 col-xs-12 title">{{ event.title }}</div>
+                            <div class="col-md-3 col-xs-3">{{ event.time_event|time:"H:i" }}</div>
+                            <div class="col-md-9 col-xs-9">ul. {{ event.address }} {{ event.number_street }}</div>
+                            <div class="col-md-3 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
+                            <div class="col-md-9 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
+                            <div class="col-md-3 col-xs-6"><span style="color:green;">Aktywne</span></div>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+
+            {% endfor %}
+            <div id="all_tab"></div>
+        </div>
+    </div>
+
+
+
+        <footer>
+        <!-- Footer -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; FabrykaCodu.pl</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+    <!-- /.container -->
+</div>
+{% endblock %}
+

@@ -1,0 +1,17 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+ <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+    			{% trans "Verify Your E-mail Address" %}
+    		</h1>
+    	</div>
+    		<p>{% blocktrans %}Zostal wyslany e-mail weryfikacyjny.{% endblocktrans %}</p>
+	</div>
+{% endblock %}

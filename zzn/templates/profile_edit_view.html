@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}Profile | {{request.user.username}} {% endblock %}
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+{% endblock %}
+
+{% block content %}
+	    <!-- Page Content -->
+    <div class="container">
+        <!-- {{profile.get_absolute_url}} -->
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                        {{title}}
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+        {% if not profile.picture %}
+            <span style="color:red">Proszę podaj zdjęcie, aby przejść do innych widoków.</span><br><br>
+        <!-- Portfolio Item Row -->
+        {%endif%}
+        
+        <div class="row">
+        <div class="col-md-5 col-xs-5">
+            <h3 class="page-header">
+                Twoje dane:
+            </h3>
+        <div class="col-md-10 col-xs-12">
+        {% if profile.picture %}
+                <img src="{{profile.picture.url}}" class="img-circle" alt="Cinque Terre" width="100%" height="100%">
+            {%else%}
+                <img class="img-circle img-responsive img-center" src="{% static 'img/no-avatar.jpg' %}" alt="" width="100%" height="100%">
+            {%endif%}
+        </div>
+            <div class="col-md-12">
+                {% if profile.user.first_name and  profile.user.last_name %}
+                    <h3>{{ profile.user.first_name}} {{ profile.user.last_name}}</h3>
+                {% else %}
+                    <h3>{{ profile.user}}</h3>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="col-md-12">
+                <h3>Ulubione dyscypliny:</h3>
+            </div>
+            <br><br><br>
+                {% for key, value in requestDisciplines.items %}
+                {% with index=forloop.counter0 %}
+                    <div class="col-md-6 col-xs-6">
+
+                            <img class="img-responsive portfolio-item" src='{{value}}' alt="">
+                        {{key}}
+                    </div>
+                {% endwith %}
+                {% endfor %}
+
+        </div>
+
+        <div class="col-md-7 col-xs-7">
+        <h3 class="page-header">
+                Edycja:
+            </h3>
+        <form method="POST" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            
+            {{form|crispy}}
+            <input class="btn btn-lg btn-success" type="submit" value="Zapisz" />
+            <br><br>
+            <hr>
+        </form>
+        </div>
+
+    </div>
+    </div>
+
+
+        <footer>
+        <!-- Footer -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; FabrykaCodu.pl</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    <!-- /.container -->
+
+{% endblock %}
+

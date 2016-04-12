@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Profile | {{request.user.username}} {% endblock %}
+
+{% block style %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+{% endblock %}
+
+{% block content %}
+	    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <h1 class="page-header">
+                        {% if profile.user.first_name and  profile.user.last_name %}
+                            {{ profile.user.first_name}} {{ profile.user.last_name}}
+                            {{profile.user.SocialAccount.uid}}
+                        {% else %}
+                            {{ profile.user}}
+                        {% endif %}
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-4 col-xs-12">
+            {% if profile.picture %}
+                <img src="{{profile.picture.url}}" class="img-circle" alt="Cinque Terre" width="80%" height="80%">
+            {%else%}
+                <img class="img-circle img-responsive img-center" src="{% static 'img/no-avatar.jpg' %}" alt="">
+            {%endif%}
+                <!-- <p>Lokalizacja: {{profile.location}}</p> -->
+            </div>
+
+            <div class="col-md-8 col-xs-12">
+                <div class="col-md-12">
+
+                    <h3>Lokalizacja:</h3>
+                    {{profile.location}}
+                </div>
+<!--                 <div class="col-md-5">
+                    <h3>Rozegrane mecze:</h3> {{profile.played_match}}
+                </div> -->
+                <div class="col-md-7">
+                    <h3>Organizowane mecze:</h3> {{profile.organized_match}}
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <h3>Od zawodnika: </h3>
+                    <p>{{profile.about_player}}</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Ulubione dyscypliny</h3>
+            </div>
+            {% for key, value in requestDisciplines.items %}
+            {% with index=forloop.counter0 %}
+                
+                <div class="col-sm-3 col-xs-6">
+                    <p align="center">
+                        <img class="img-responsive portfolio-item" src='{{value}}' alt=""><br/>
+                    {{key}}
+                </p>
+                </div>
+            {% endwith %}
+            {% endfor %}
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; FabrykaCodu.pl</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    <!-- /.container -->
+
+{% endblock %}
+
