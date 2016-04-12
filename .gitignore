@@ -6,9 +6,7 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
 media
-
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -267,7 +265,6 @@ paket-files/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
 *$py.class
 
