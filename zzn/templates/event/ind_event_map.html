@@ -63,7 +63,7 @@
 
     </style>
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
+    <script src="{% static "js/Street.js" %}"></script>
     <script type="text/javascript">   
 
         var mapa;       // obiekt globalny
@@ -74,11 +74,11 @@
         var rozmiar_cien        = new google.maps.Size(59,32);
         var punkt_startowy      = new google.maps.Point(0,0);
         var punkt_zaczepienia   = new google.maps.Point(16,16);
-        var ikona               = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52.png", rozmiar, punkt_startowy, punkt_zaczepienia);
-        var cien = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52s.png", rozmiar_cien, punkt_startowy, punkt_zaczepienia);
+       
+        var ikona               = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon20.png", rozmiar, punkt_startowy, punkt_zaczepienia);
+        var cien                = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon20s.png", rozmiar_cien, punkt_startowy, punkt_zaczepienia);
         var wskaznik            = new google.maps.Marker({icon: ikona, shadow: cien});
                     
-
             function mapaStart()  
             {  
                 var wspolrzedne = new google.maps.LatLng(50.668444, 17.922326);
@@ -94,24 +94,23 @@
                 geokoder.geocode({address:"Opole, Rynek 1" }, obslugaGeokodowania);
             }
             
-            function skoczDoAdresu(title,adres)
+            function skoczDoAdresu(id,eventName,idStr)
             {
-                wskaznik.setMap(null);
-                geokoder.geocode({address: adres}, function(wyniki, status)
-                {
-                    if(status == google.maps.GeocoderStatus.OK)
-                    {
-                        mapa.setCenter(wyniki[0].geometry.location);
-                        wskaznik.setPosition(wyniki[0].geometry.location);
-                        wskaznik.setMap(mapa);
-                        dymek.open(mapa, wskaznik);
-                        dymek.setContent('<strong>Wydarzenie: </strong>'+title+'<br /> <strong>Adres:</strong> '+adres);
-                    }
-                    else
-                    {
-                        alert("Nie znalazłem podanego adresu!");
-                    }
-                });
+                var latlong = document.getElementById(id).innerHTML;
+                var addresStr = document.getElementById(idStr).innerHTML;
+
+                mapa.setCenter(latlong);
+                var latlngStr2 = (String)(latlong).split(',',2);
+                var latlng = {lat: parseFloat(latlngStr2[0].replace("(", "")), lng: parseFloat(latlngStr2[1].replace(")", ""))};
+                
+                mapa.setCenter(latlng);
+                wskaznik.setPosition(latlng);
+                wskaznik.setMap(mapa);
+                dymek.setContent('<strong>Wydarzenie: </strong>'+eventName+'<br /> <strong>Adres:</strong> '+addresStr);  
+                dymek.setPosition(latlng);  
+                dymek.open(mapa);
+
+              
             }  
             
             function obslugaGeokodowania(wyniki, status)
@@ -124,11 +123,7 @@
                     elements[i].style.display = (i >=number-8 && i<number)? 'inherit':'none';
                 }
             }
-
-
             $(function(){
-
-
             var active_your = $('.active_your').length;
             var active = true;
 
@@ -164,16 +159,27 @@
             
             {% for event in results %}
                 {% if not event.is_past_due %}
-                <div onclick="skoczDoAdresu('{{event.title}}','{{ event.city }}, {{ event.address }} {{ event.number_street }}')" class="event active_your" id="pk {{ event.pk }}">
+                <div onclick="skoczDoAdresu({{event.latlong}})" class="event active_your" id="pk_{{ event.pk }}">
                      <div class="row">
-                        <div class="col-md-12 col-xs-12 title">{{ event.title }}</div>
-                        <div class="col-md-6 col-xs-4">ul. {{ event.address }} {{ event.number_street }}</div>
+                        <div class="col-md-12 col-xs-12  title">{{ event.title }}</div>
                         
-                        <div class="col-md-1 col-xs-2">{{ event.time_event|time:"H:i" }}</div>
-                        <div class="col-md-2 col-xs-3">{{ event.date_event|date:"j-n" }}</div>
+                        <div class="col-md-4 col-xs-4">{{ event.time_event|time:"H:i" }}</div>
+                        <div class="col-md-4 col-xs-4">{{ event.date_event|date:"j-n-Y" }}</div>
+                        <div class="col-md-4 col-xs-4">{{ event.date_event|date:"l" }}</div>
                         
-                        <div class="col-md-2 col-xs-1">{{ event.date_event|date:"l" }}</div>
-                        <div class="col-md-3 col-xs-5"><a class="more" href='{{event.get_absolute_url}}'>Więcej ...</a></div>
+                        <div class="col-md-12 col-xs-12" id="street_env{{event.pk}}org"></div>
+                        <div id="latlong{{event.pk}}{{event.is_past_due}}" style="display:none;">{{event.latlong}}</div>
+                        
+                        <script type="text/javascript">
+                            var el = document.getElementById("pk_{{ event.pk }}");
+                            var latlong = document.getElementById("latlong{{event.pk}}{{event.is_past_due}}").innerHTML;
+                            
+                            geocodeLatLng(latlong,"street_env{{event.pk}}org");
+                            el.addEventListener("click", function(){skoczDoAdresu("latlong{{event.pk}}{{event.is_past_due}}",
+                                "{{event.title}}","street_env{{event.pk}}org")}, false);
+                        
+                        </script>
+                        <div class="col-md-3 col-xs-5"><a class="more" href='{{event.get_absolute_url}}'>Więcej</a></div>
                         <!-- <div class="col-md-9 col-xs-6">Dodac aktywnych ludzi</div> -->
                     </div>
                 </div>

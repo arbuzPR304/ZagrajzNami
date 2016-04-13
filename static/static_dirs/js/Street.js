@@ -5,7 +5,7 @@ function geocodeLatLng(latlngStr, place) {
   geokoder.geocode({'location': latlng}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[0]) {
-        document.getElementById(place).innerHTML = results[0].formatted_address;
+        document.getElementById(place).innerHTML = "ul. "+results[0].formatted_address;
         return (results[0].formatted_address);
       } else {
         window.alert('No results found');

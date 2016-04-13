@@ -97,7 +97,6 @@
 		function geocodeLatLng() {
 
 		  var latlngStr2 = (String)(latlngStr).split(',',2);
-		  
 		  var latlng = {lat: parseFloat(latlngStr2[0].replace("(", "")), lng: parseFloat(latlngStr2[1].replace(")", ""))};
 		  
 		  geokoder.geocode({'location': latlng}, function(results, status) {

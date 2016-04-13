@@ -79,6 +79,21 @@
                 var ikona   = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52.png", rozmiar, punkt_startowy, punkt_zaczepienia);
                 var cien    = new google.maps.MarkerImage("http://maps.google.com/mapfiles/kml/pal3/icon52s.png", rozmiar_cien, punkt_startowy, punkt_zaczepienia);
                 
+
+                // var latlong = document.getElementById(id).innerHTML;
+                // var addresStr = document.getElementById(idStr).innerHTML;
+
+                // mapa.setCenter(latlong);
+                // var latlngStr2 = (String)(latlong).split(',',2);
+                // var latlng = {lat: parseFloat(latlngStr2[0].replace("(", "")), lng: parseFloat(latlngStr2[1].replace(")", ""))};
+                
+                // mapa.setCenter(latlng);
+                // wskaznik.setPosition(latlng);
+                // wskaznik.setMap(mapa);
+                // dymek.setContent('<strong>Wydarzenie: </strong>'+eventName+'<br /> <strong>Adres:</strong> '+addresStr);  
+                // dymek.setPosition(latlng);  
+                // dymek.open(mapa);
+
                 if(status == google.maps.GeocoderStatus.OK)
                 {
                     mapa.setCenter(wyniki[0].geometry.location);
@@ -233,7 +248,7 @@
             
 
             <div class="quantity" style="font-size:25px">
-                <div class="col-md-6 col-xs-6"><p align="center">{{event.date_event|date:"j-n-y"}}</p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">{{event.date_event|date:"j-n-Y"}}</p></div>
                 <div class="col-md-6 col-xs-6"><p align="center">{{event.time_event|time:"H:i"}}</p></div>
             </div>
 
