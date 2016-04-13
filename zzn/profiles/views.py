@@ -120,4 +120,4 @@ def dashboard(request):
 				"my_event":my_list_event,
 				"user":temp,
 				}
-	return render(request,"dashboard/test.html",context)
+	return render(request,"dashboard/dashboard.html",context)

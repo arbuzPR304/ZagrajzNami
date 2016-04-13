@@ -7,6 +7,7 @@
 __pycache__/
 local_settings.py
 media
+*.cpython-34.pyc 
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
