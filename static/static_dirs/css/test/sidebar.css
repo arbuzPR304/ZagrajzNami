@@ -189,6 +189,9 @@ body,html{
     color: rgba(21, 184, 79, 0.9);
     font-weight: bold;
 }
+.sidecustom{
+  position:fixed;
+}
 .event{
             font-family: sans-serif;
             margin:5px;
