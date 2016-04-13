@@ -31,12 +31,13 @@
 				      "stylers": [
 				        { "visibility": "off" }
 				      ]
-				    },{
-				      "featureType": "poi",
-				      "stylers": [
-				        { "visibility": "off" }
-				      ]
 				    },
+				    // {
+				    //   "featureType": "poi",
+				    //   "stylers": [
+				    //     { "visibility": "off" }
+				    //   ]
+				    // },
 				  ];
 
 				  this.set("styles", (state)? {} : styles );  

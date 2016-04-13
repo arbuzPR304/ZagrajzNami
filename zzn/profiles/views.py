@@ -1,22 +1,16 @@
 from datetime import datetime,date,time
-
 from django.core.context_processors import csrf
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-# Create your views here.
-
 from .forms import ProfileForm
-
 User = get_user_model()
 from .models import Profile, upload_loaction
 from sport_event.models import Disciplines,Events,Members
 from notifications.signals import notify
-
 from django.shortcuts import redirect
 from notifications.models import Notifications
-
 @login_required
 def profile_views(request, username):
 	user = get_object_or_404(User,username=username)

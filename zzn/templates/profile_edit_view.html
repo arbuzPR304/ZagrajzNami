@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-	    <!-- Page Content -->
+        <!-- Page Content -->
     <div class="container">
         <!-- {{profile.get_absolute_url}} -->
         <!-- Portfolio Item Heading -->
@@ -34,7 +34,7 @@
             </h3>
         <div class="col-md-10 col-xs-12">
         {% if profile.picture %}
-                <img src="{{profile.picture.url}}" class="img-circle" alt="Cinque Terre" width="100%" height="100%">
+                <img src="{{profile.picture.url}}" class="circle" alt="Cinque Terre" width="80%" height="80%">
             {%else%}
                 <img class="img-circle img-responsive img-center" src="{% static 'img/no-avatar.jpg' %}" alt="" width="100%" height="100%">
             {%endif%}
