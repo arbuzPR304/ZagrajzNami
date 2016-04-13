@@ -25,6 +25,8 @@
         }
 
         </style>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script src="{% static "js/Street.js" %}"></script>
         <script type="text/javascript">
         function myFunction1(number) {
               var elements = document.getElementsByClassName('active_your')
@@ -165,12 +167,8 @@
                         <div class="row">
                             <div class="col-md-9 title">{{ event.title }}</div>
                             <div class="col-md-3 ">{{ event.time_event|time:"H:i" }}</div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-9 xs-col-9">ul. {{ event.address }} {{ event.number_street }}</div>
                             <div class="col-md-3 xs-col-3">{{ event.date_event|date:"j-n-y" }}</div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-9"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
                             <div class="col-md-3"><span style="color:red;">Nie aktywne</span></div>
                         </div>
@@ -178,12 +176,18 @@
                 {% else %}
                     <div class="active_your event active your">
                         <div class="row">
-                            <div class="col-md-9 col-xs-12 title">{{ event.title }}</div>
-                            <div class="col-md-3 col-xs-3">{{ event.time_event|time:"H:i" }}</div>
-                            <div class="col-md-9 col-xs-9">ul. {{ event.address }} {{ event.number_street }}</div>
-                            <div class="col-md-3 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
-                            <div class="col-md-9 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
-                            <div class="col-md-3 col-xs-6"><a href='/event/edit/{{event.pk}}'> Edycja ...</a></div>
+                            <div class="col-md-12 col-xs-12  title">{{ event.title }}</div>
+                            <div class="col-md-8 col-xs-6">{{ event.date_event|date:"j-n-Y" }}</div>
+                            <div class="col-md-4 col-xs-6">{{ event.time_event|time:"H:i" }}</div>
+                            <div class="col-md-12 col-xs-12" id="street_env{{event.pk}}org"></div>
+                            <div id="latlong{{event.pk}}{{event.is_past_due}}" style="display:none;">{{event.latlong}}</div>
+                            <script type="text/javascript">
+                                var latlong = document.getElementById("latlong{{event.pk}}{{event.is_past_due}}").innerHTML;
+                                geocodeLatLng(latlong,"street_env{{event.pk}}org");
+                            </script>
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd</a></div>
+                            <div class="col-md-4 col-xs-6"><a href='/event/edit/{{event.pk}}'> Edycja</a></div>
+
                         </div>
                     </div>
 
@@ -216,12 +220,17 @@
                 {% else %}
                     <div class="active_all event active all">
                         <div class="row">
-                           <div class="col-md-9 col-xs-12 title">{{ event.title }}</div>
-                            <div class="col-md-3 col-xs-3">{{ event.time_event|time:"H:i" }}</div>
-                            <div class="col-md-9 col-xs-9">ul. {{ event.address }} {{ event.number_street }}</div>
-                            <div class="col-md-3 col-xs-12">{{ event.date_event|date:"j-n-y" }}</div>
-                            <div class="col-md-9 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd ...</a></div>
-                            <div class="col-md-3 col-xs-6"><span style="color:green;">Aktywne</span></div>
+                            <div class="col-md-12 col-xs-12  title">{{ event.title }}</div>
+                            <div class="col-md-8 col-xs-6">{{ event.date_event|date:"j-n-Y" }}</div>
+                            <div class="col-md-4 col-xs-6">{{ event.time_event|time:"H:i" }}</div>
+                            <div class="col-md-12 col-xs-12" id="street_env{{event.pk}}play"></div>
+                            <div id="latlong{{event.pk}}{{event.is_past_due}}" style="display:none;">{{event.latlong}}</div>
+                            <script type="text/javascript">
+                                var latlong = document.getElementById("latlong{{event.pk}}{{event.is_past_due}}").innerHTML;
+                                geocodeLatLng(latlong,"street_env{{event.pk}}play");
+                            </script>
+                            <div class="col-md-8 col-xs-6"><a href='{{event.get_absolute_url}}'>Podgląd</a></div>
+                            <div class="col-md-4 col-xs-6"><span style="color:green;">Aktywne</span></div>
                         </div>
                     </div>
 
