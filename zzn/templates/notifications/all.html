@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% load staticfiles %}
 {% block title %}{{request.user.username}} {% endblock %}
@@ -22,7 +22,7 @@
                 <h1 class="page-header">
                         {{title}}
                 </h1>
-                <a href="{% url 'notifications_delete' %}" id="inactive_button" type="button" class="btn btn-danger">Usun wszystkie powiadomienia</a>
+                <a href="{% url 'notifications_delete' %}" id="inactive_button" type="button" class="btn btn-danger">Usuń wszystkie powiadomienia</a>
             </div>
         </div>
         <!-- /.row -->

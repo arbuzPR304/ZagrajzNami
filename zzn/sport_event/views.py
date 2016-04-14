@@ -117,7 +117,7 @@ def sport_env_detail(request, id):
 					action = new_comment,
 					recipient=player,
 					target=new_comment.event,
-					verb='dodal nowy komentarz do wydarzenia'
+					verb='dodał nowy komentarz do wydarzenia'
 				)
 			return HttpResponseRedirect(event.get_absolute_url())
 	else:
@@ -181,7 +181,7 @@ def ajax_event(request, id):
 
 	if datestr>now:
 		if not(request.user in zawodnicy) and freePlace ==0:
-			buttonStr="Wszytkie miesjca zapelnione"
+			buttonStr="Wszytkie miesjca zapełnione"
 			buttonInfo=None
 		elif not(request.user in zawodnicy) and freePlace>0:
 			buttonStr = "Zagraj"
@@ -237,7 +237,7 @@ def ajax_eventReady(request, id):
 		
 		if datestr>now:
 			if not(request.user in zawodnicy) and freePlace ==0:
-				buttonStr="Wszytkie miesjca zapelnione"
+				buttonStr="Wszytkie miesjca zapełnione"
 				buttonInfo=None
 			elif not(request.user in zawodnicy) and freePlace>0:
 				buttonStr = "Zagraj"
@@ -298,7 +298,7 @@ def sport_env_edit(request,id):
 		        		action = event,
 		        		recipient=player,
 		        		target=event,
-		        		verb='dokonal edycji wydarzenia'
+		        		verb='dokonał edycji wydarzenia'
 		        		)
 		        return redirect("your_event")
 		else:
@@ -323,7 +323,7 @@ def sport_env_remove(request,id):
         		action = event,
         		recipient=player,
         		target=event,
-        		verb='Usunieto wydarzenie'
+        		verb='Usunięto wydarzenie'
 		    )
 		members = get_object_or_404(Members,event=event)
 		members.delete()

@@ -29,12 +29,12 @@ class Events(models.Model):
     title = models.CharField(max_length=120, blank=False, null=True, verbose_name = 'Nazwa')
     organizer = models.ForeignKey(User,verbose_name='Organizator')
     profession_choose = models.ForeignKey(Disciplines,verbose_name='Dyscyplina')
-    max_number_of_player = models.PositiveSmallIntegerField(blank=False, null=True, verbose_name= 'Maksymalna liczna graczy')
+    max_number_of_player = models.PositiveSmallIntegerField(blank=False, null=True, verbose_name= 'Maksymalna liczba graczy')
     # address
     number_street = models.PositiveSmallIntegerField(blank=False, null=True,verbose_name='Numer')
     address = models.CharField(max_length=120, blank=False, null=True,verbose_name='Ulica')
     city = models.CharField(max_length=120, blank=False, null=True,verbose_name='Miasto')
-    latlong = models.CharField(max_length=120, blank=False, null=True,verbose_name='Dlugosc, szerokosc')
+    latlong = models.CharField(max_length=120, blank=False, null=True,verbose_name='Długość, szerokość')
     #organise
     time_event = models.TimeField(blank=False, null=True, verbose_name='Czas wydarzenia')
     date_event = models.DateField(blank=False, null=True, verbose_name='Data wydarzenia')

@@ -23,9 +23,9 @@ class EventsForm(forms.ModelForm):
 	def clean_max_number_of_player(self):
 		max_number_of_player = self.cleaned_data.get('max_number_of_player')
 		if max_number_of_player<=1:
-			raise forms.ValidationError("Podaj liczbe wieksza od 1")
+			raise forms.ValidationError("Podaj liczbę wieksza od 1")
 		elif max_number_of_player>30:
-			raise forms.ValidationError("Podaj liczbe mniejsza niz 30")
+			raise forms.ValidationError("Podaj liczbę mniejszą niz 30")
 		return max_number_of_player
 
 	def clean_date_event(self):
@@ -37,9 +37,9 @@ class EventsForm(forms.ModelForm):
 			datestr=datetime.strptime( a+"T"+b, "%Y-%m-%dT%H:%M:%S" )
 			now = datetime.now()
 			if now>datestr:
-				raise forms.ValidationError("Podaj przysla date")
+				raise forms.ValidationError("Podaj przyszłą datę")
 		else:
-			raise forms.ValidationError("Podaj godzine")
+			raise forms.ValidationError("Podaj godzinę")
 		return date_event
 
 	def clean_city(self):

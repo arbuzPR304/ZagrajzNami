@@ -10,7 +10,7 @@ from allauth.socialaccount.models import SocialAccount
 from multiselectfield import MultiSelectField
 
 
-def upload_loaction(instance,filename):
+def upload_location(instance,filename):
 	location = str(instance.user.username)
 	filename, file_extension = os.path.splitext(filename)
 	return "%s/%s%s" %(location,"photo",file_extension)
@@ -19,7 +19,7 @@ def upload_loaction(instance,filename):
 class Profile(models.Model):
 	user = models.OneToOneField(User)
 	location = models.CharField(default="Opole", max_length=120, null=True, blank=True)
-	picture = models.ImageField(upload_to=upload_loaction, null=False, blank=False)
+	picture = models.ImageField(upload_to=upload_location, null=False, blank=False)
 	played_match = models.IntegerField(default=0,null=True,blank=True)
 	organized_match = models.IntegerField(default=0,null=True,blank=True)
 	about_player = models.CharField(max_length=5000, null=False, blank=True)

@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .forms import ProfileForm
 User = get_user_model()
-from .models import Profile, upload_loaction
+from .models import Profile, upload_location
 from sport_event.models import Disciplines,Events,Members
 from notifications.signals import notify
 from django.shortcuts import redirect
@@ -39,10 +39,12 @@ def edit_profile_views(request):
 	profile,created = Profile.objects.get_or_create(user=user)
 	requestDisciplines = {}
 	if request.method == 'POST':
+
 		form = ProfileForm(request.POST,request.FILES, instance=profile)
+
 		if form.is_valid():
 			form.save()
-			return render(request,"dashboard/dashboard.html",{})
+			return render(request,"dashboard/test.html",{})
 	else:
 		user = request.user
 		profile = user.profile

@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>zagrajznami</Name>
+    <RootNamespace>zagrajznami</RootNamespace>
+    <InterpreterId>{4aaafad9-1f00-45f7-a2cc-e6193e77777f}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
+    <PythonRunWebServerCommandArguments>runserver</PythonRunWebServerCommandArguments>
+    <PythonDebugWebServerCommandArguments>runserver --noreload %SERVER_PORT% $(CommandLineArguments)</PythonDebugWebServerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>823df17e-02f0-46ac-a3e5-e42db6ab1977</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>zzn\manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>
+    </DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\transliterate\" />
+    <Folder Include="static\" />
+    <Folder Include="static\media_root\" />
+    <Folder Include="static\media_root\American Football\" />
+    <Folder Include="static\media_root\Badminton\" />
+    <Folder Include="static\media_root\Daro\" />
+    <Folder Include="static\media_root\Elena\" />
+    <Folder Include="static\media_root\Ewaandzygmunt\" />
+    <Folder Include="static\media_root\Futsal\" />
+    <Folder Include="static\media_root\Hokej na lodzie\" />
+    <Folder Include="static\media_root\JakubBłaszczykowski\" />
+    <Folder Include="static\media_root\julkaspi\" />
+    <Folder Include="static\media_root\kasper3\" />
+    <Folder Include="static\media_root\kaspero\" />
+    <Folder Include="static\media_root\kasper\" />
+    <Folder Include="static\media_root\Koszykówka\" />
+    <Folder Include="static\media_root\Kręgle\" />
+    <Folder Include="static\media_root\Piłka nożna\" />
+    <Folder Include="static\media_root\Piłka ręczna\" />
+    <Folder Include="static\media_root\Rudweiser22\" />
+    <Folder Include="static\media_root\Siatkówka plażowa\" />
+    <Folder Include="static\media_root\Siatkówka\" />
+    <Folder Include="static\media_root\Szachy\" />
+    <Folder Include="static\media_root\szczęsny\" />
+    <Folder Include="static\media_root\Tenis\" />
+    <Folder Include="static\media_root\wiki\" />
+    <Folder Include="static\media_root\Wilku_wdz\" />
+    <Folder Include="static\static_dirs\" />
+    <Folder Include="static\static_dirs\css\" />
+    <Folder Include="static\static_dirs\fonts\" />
+    <Folder Include="static\static_dirs\img\" />
+    <Folder Include="static\static_dirs\img\png\" />
+    <Folder Include="static\static_dirs\js\" />
+    <Folder Include="static\static_root\" />
+    <Folder Include="static\static_root\admin\" />
+    <Folder Include="static\static_root\admin\css\" />
+    <Folder Include="static\static_root\admin\img\" />
+    <Folder Include="static\static_root\admin\img\gis\" />
+    <Folder Include="static\static_root\admin\js\" />
+    <Folder Include="static\static_root\admin\js\admin\" />
+    <Folder Include="static\static_root\css\" />
+    <Folder Include="static\static_root\facebook\" />
+    <Folder Include="static\static_root\facebook\js\" />
+    <Folder Include="static\static_root\img\" />
+    <Folder Include="static\static_root\img\png\" />
+    <Folder Include="static\static_root\js\" />
+    <Folder Include="zzn\" />
+    <Folder Include="zzn\comments\" />
+    <Folder Include="zzn\comments\migrations\" />
+    <Folder Include="zzn\comments\migrations\__pycache__\" />
+    <Folder Include="zzn\comments\__pycache__\" />
+    <Folder Include="zzn\locale\" />
+    <Folder Include="zzn\locale\en\" />
+    <Folder Include="zzn\locale\en\LC_MESSAGES\" />
+    <Folder Include="zzn\locale\pl\" />
+    <Folder Include="zzn\locale\pl\LC_MESSAGES\" />
+    <Folder Include="zzn\notifications\" />
+    <Folder Include="zzn\notifications\migrations\" />
+    <Folder Include="zzn\notifications\migrations\__pycache__\" />
+    <Folder Include="zzn\notifications\__pycache__\" />
+    <Folder Include="zzn\profiles\" />
+    <Folder Include="zzn\profiles\migrations\" />
+    <Folder Include="zzn\profiles\migrations\__pycache__\" />
+    <Folder Include="zzn\profiles\__pycache__\" />
+    <Folder Include="zzn\sport_event\" />
+    <Folder Include="zzn\sport_event\migrations\" />
+    <Folder Include="zzn\sport_event\migrations\__pycache__\" />
+    <Folder Include="zzn\sport_event\__pycache__\" />
+    <Folder Include="zzn\templates\" />
+    <Folder Include="zzn\templates\account\" />
+    <Folder Include="zzn\templates\account\email\" />
+    <Folder Include="zzn\templates\account\messages\" />
+    <Folder Include="zzn\templates\account\snippets\" />
+    <Folder Include="zzn\templates\dashboard\" />
+    <Folder Include="zzn\templates\event\" />
+    <Folder Include="zzn\templates\notifications\" />
+    <Folder Include="zzn\templates\openid\" />
+    <Folder Include="zzn\templates\socialaccount\" />
+    <Folder Include="zzn\templates\socialaccount\messages\" />
+    <Folder Include="zzn\templates\socialaccount\snippets\" />
+    <Folder Include="zzn\zzn\" />
+    <Folder Include="zzn\zzn\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="requirements.txt" />
+    <Content Include="src\pip-delete-this-directory.txt" />
+    <Content Include="static\media_root\American Football\american.png" />
+    <Content Include="static\media_root\Badminton\tennis7.png" />
+    <Content Include="static\media_root\Daro\photo.jpg" />
+    <Content Include="static\media_root\Elena\water-and-fire-dragons-30521.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo_AAeD6KR.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo_GuEaFyV.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo_K1uA65F.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo_sDQY4Xx.jpg" />
+    <Content Include="static\media_root\Ewaandzygmunt\photo_SgAYKNL.jpg" />
+    <Content Include="static\media_root\Futsal\football96.png" />
+    <Content Include="static\media_root\Hokej na lodzie\ice57.png" />
+    <Content Include="static\media_root\JakubBłaszczykowski\images %281%29.jpg" />
+    <Content Include="static\media_root\JakubBłaszczykowski\images.jpg" />
+    <Content Include="static\media_root\julkaspi\berlin.jpg" />
+    <Content Include="static\media_root\kasper3\kaspero.jpg" />
+    <Content Include="static\media_root\kasper3\vienna" />
+    <Content Include="static\media_root\kaspero\kasper2.jpg" />
+    <Content Include="static\media_root\kasper\block.png" />
+    <Content Include="static\media_root\kasper\photo.jpg" />
+    <Content Include="static\media_root\Koszykówka\basket4.png" />
+    <Content Include="static\media_root\Kręgle\person229.png" />
+    <Content Include="static\media_root\Piłka nożna\football118.png" />
+    <Content Include="static\media_root\Piłka ręczna\stickman65.png" />
+    <Content Include="static\media_root\Rudweiser22\photo.jpg" />
+    <Content Include="static\media_root\Siatkówka plażowa\swimming pool27.png" />
+    <Content Include="static\media_root\Siatkówka\volleyball14.png" />
+    <Content Include="static\media_root\Szachy\king10.png" />
+    <Content Include="static\media_root\szczęsny\12545899_495427393962818_1950954549_o.jpg" />
+    <Content Include="static\media_root\Tenis\game 1.png" />
+    <Content Include="static\media_root\wiki\236121_toskania_wlochy_zachod_slonca_lawendowe_pole_dom.jpg" />
+    <Content Include="static\media_root\Wilku_wdz\water-and-fire-dragons-30521.jpg" />
+    <Content Include="static\static_dirs\css\add_env.css" />
+    <Content Include="static\static_dirs\css\bootstrap.min.css" />
+    <Content Include="static\static_dirs\css\custom.css" />
+    <Content Include="static\static_dirs\css\font-awesome.min.css" />
+    <Content Include="static\static_dirs\css\landing-page.css" />
+    <Content Include="static\static_dirs\css\your_view.css" />
+    <Content Include="static\static_dirs\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="static\static_dirs\img\ball3.png" />
+    <Content Include="static\static_dirs\img\find.jpg" />
+    <Content Include="static\static_dirs\img\find_env.jpg" />
+    <Content Include="static\static_dirs\img\find_env2.jpg" />
+    <Content Include="static\static_dirs\img\find_env3.jpg" />
+    <Content Include="static\static_dirs\img\find_env_edit.jpg" />
+    <Content Include="static\static_dirs\img\join.jpg" />
+    <Content Include="static\static_dirs\img\join2.jpg" />
+    <Content Include="static\static_dirs\img\no-avatar.jpg" />
+    <Content Include="static\static_dirs\img\organize.png" />
+    <Content Include="static\static_dirs\img\png\American Football" />
+    <Content Include="static\static_dirs\img\png\Futsal" />
+    <Content Include="static\static_dirs\img\png\Hokej na lodzie" />
+    <Content Include="static\static_dirs\img\png\Koszykówka" />
+    <Content Include="static\static_dirs\img\png\Kręgle" />
+    <Content Include="static\static_dirs\img\png\Paintball" />
+    <Content Include="static\static_dirs\img\png\Piłka nożna" />
+    <Content Include="static\static_dirs\img\png\Piłka ręczna" />
+    <Content Include="static\static_dirs\img\png\Siatkówka plażowa" />
+    <Content Include="static\static_dirs\img\png\Szachy" />
+    <Content Include="static\static_dirs\img\png\Tenis" />
+    <Content Include="static\static_dirs\img\png\tennis7.png" />
+    <Content Include="static\static_dirs\img\png\volleyball14.png" />
+    <Content Include="static\static_dirs\img\the-bal.jpg" />
+    <Content Include="static\static_dirs\img\the-ball.jpg" />
+    <Content Include="static\static_dirs\img\tlo.jpg" />
+    <Content Include="static\static_dirs\img\tlo_ball.jpg" />
+    <Content Include="static\static_dirs\img\tlo_ball2.jpg" />
+    <Content Include="static\static_dirs\js\bootstrap.min.js" />
+    <Content Include="static\static_dirs\js\bootstrap2.min.js" />
+    <Content Include="static\static_dirs\js\bootstrap3.min.js" />
+    <Content Include="static\static_dirs\js\CreateMap.js" />
+    <Content Include="static\static_dirs\js\ie-emulation-modes-warning.js" />
+    <Content Include="static\static_dirs\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="static\static_dirs\js\jquery.js" />
+    <Content Include="static\static_root\admin\css\base.css" />
+    <Content Include="static\static_root\admin\css\changelists.css" />
+    <Content Include="static\static_root\admin\css\dashboard.css" />
+    <Content Include="static\static_root\admin\css\forms.css" />
+    <Content Include="static\static_root\admin\css\ie.css" />
+    <Content Include="static\static_root\admin\css\login.css" />
+    <Content Include="static\static_root\admin\css\rtl.css" />
+    <Content Include="static\static_root\admin\css\widgets.css" />
+    <Content Include="static\static_root\admin\img\changelist-bg.gif" />
+    <Content Include="static\static_root\admin\img\changelist-bg_rtl.gif" />
+    <Content Include="static\static_root\admin\img\default-bg-reverse.gif" />
+    <Content Include="static\static_root\admin\img\default-bg.gif" />
+    <Content Include="static\static_root\admin\img\deleted-overlay.gif" />
+    <Content Include="static\static_root\admin\img\gis\move_vertex_off.png" />
+    <Content Include="static\static_root\admin\img\gis\move_vertex_on.png" />
+    <Content Include="static\static_root\admin\img\icon-no.gif" />
+    <Content Include="static\static_root\admin\img\icon-unknown.gif" />
+    <Content Include="static\static_root\admin\img\icon-yes.gif" />
+    <Content Include="static\static_root\admin\img\icon_addlink.gif" />
+    <Content Include="static\static_root\admin\img\icon_alert.gif" />
+    <Content Include="static\static_root\admin\img\icon_calendar.gif" />
+    <Content Include="static\static_root\admin\img\icon_changelink.gif" />
+    <Content Include="static\static_root\admin\img\icon_clock.gif" />
+    <Content Include="static\static_root\admin\img\icon_deletelink.gif" />
+    <Content Include="static\static_root\admin\img\icon_error.gif" />
+    <Content Include="static\static_root\admin\img\icon_searchbox.png" />
+    <Content Include="static\static_root\admin\img\icon_success.gif" />
+    <Content Include="static\static_root\admin\img\inline-delete-8bit.png" />
+    <Content Include="static\static_root\admin\img\inline-delete.png" />
+    <Content Include="static\static_root\admin\img\inline-restore-8bit.png" />
+    <Content Include="static\static_root\admin\img\inline-restore.png" />
+    <Content Include="static\static_root\admin\img\inline-splitter-bg.gif" />
+    <Content Include="static\static_root\admin\img\nav-bg-grabber.gif" />
+    <Content Include="static\static_root\admin\img\nav-bg-reverse.gif" />
+    <Content Include="static\static_root\admin\img\nav-bg-selected.gif" />
+    <Content Include="static\static_root\admin\img\nav-bg.gif" />
+    <Content Include="static\static_root\admin\img\selector-icons.gif" />
+    <Content Include="static\static_root\admin\img\selector-search.gif" />
+    <Content Include="static\static_root\admin\img\sorting-icons.gif" />
+    <Content Include="static\static_root\admin\img\tooltag-add.png" />
+    <Content Include="static\static_root\admin\img\tooltag-arrowright.png" />
+    <Content Include="static\static_root\admin\js\actions.js" />
+    <Content Include="static\static_root\admin\js\actions.min.js" />
+    <Content Include="static\static_root\admin\js\admin\DateTimeShortcuts.js" />
+    <Content Include="static\static_root\admin\js\admin\RelatedObjectLookups.js" />
+    <Content Include="static\static_root\admin\js\calendar.js" />
+    <Content Include="static\static_root\admin\js\collapse.js" />
+    <Content Include="static\static_root\admin\js\collapse.min.js" />
+    <Content Include="static\static_root\admin\js\core.js" />
+    <Content Include="static\static_root\admin\js\inlines.js" />
+    <Content Include="static\static_root\admin\js\inlines.min.js" />
+    <Content Include="static\static_root\admin\js\jquery.init.js" />
+    <Content Include="static\static_root\admin\js\jquery.js" />
+    <Content Include="static\static_root\admin\js\jquery.min.js" />
+    <Content Include="static\static_root\admin\js\LICENSE-JQUERY.txt" />
+    <Content Include="static\static_root\admin\js\prepopulate.js" />
+    <Content Include="static\static_root\admin\js\prepopulate.min.js" />
+    <Content Include="static\static_root\admin\js\SelectBox.js" />
+    <Content Include="static\static_root\admin\js\SelectFilter2.js" />
+    <Content Include="static\static_root\admin\js\timeparse.js" />
+    <Content Include="static\static_root\admin\js\urlify.js" />
+    <Content Include="static\static_root\css\bootstrap.min.css" />
+    <Content Include="static\static_root\css\custom.css" />
+    <Content Include="static\static_root\css\font-awesome.min.css" />
+    <Content Include="static\static_root\css\landing-page.css" />
+    <Content Include="static\static_root\facebook\js\fbconnect.js" />
+    <Content Include="static\static_root\img\ball.png" />
+    <Content Include="static\static_root\img\ball2.png" />
+    <Content Include="static\static_root\img\ball3.png" />
+    <Content Include="static\static_root\img\clicknrun.png" />
+    <Content Include="static\static_root\img\find.jpg" />
+    <Content Include="static\static_root\img\join.jpg" />
+    <Content Include="static\static_root\img\no-avatar.jpg" />
+    <Content Include="static\static_root\img\organize.png" />
+    <Content Include="static\static_root\img\png\American Football" />
+    <Content Include="static\static_root\img\png\Futsal" />
+    <Content Include="static\static_root\img\png\Hokej na lodzie" />
+    <Content Include="static\static_root\img\png\Koszykówka" />
+    <Content Include="static\static_root\img\png\Kręgle" />
+    <Content Include="static\static_root\img\png\Paintball" />
+    <Content Include="static\static_root\img\png\Piłka nożna" />
+    <Content Include="static\static_root\img\png\Piłka ręczna" />
+    <Content Include="static\static_root\img\png\Siatkówka plażowa" />
+    <Content Include="static\static_root\img\png\Szachy" />
+    <Content Include="static\static_root\img\png\Tenis" />
+    <Content Include="static\static_root\img\png\tennis7.png" />
+    <Content Include="static\static_root\img\png\volleyball14.png" />
+    <Content Include="static\static_root\img\tlo.jpg" />
+    <Content Include="static\static_root\img\tlo_ball.jpg" />
+    <Content Include="static\static_root\img\tlo_ball2.jpg" />
+    <Content Include="static\static_root\js\bootstrap.min.js" />
+    <Content Include="static\static_root\js\ie-emulation-modes-warning.js" />
+    <Content Include="static\static_root\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="static\static_root\js\jquery.js" />
+    <Content Include="zzn\comments\migrations\__pycache__\0001_initial.cpython-34.pyc" />
+    <Content Include="zzn\comments\migrations\__pycache__\0002_comment_event.cpython-34.pyc" />
+    <Content Include="zzn\comments\migrations\__pycache__\0003_comment_parent.cpython-34.pyc" />
+    <Content Include="zzn\comments\migrations\__pycache__\0004_auto_20151228_2215.cpython-34.pyc" />
+    <Content Include="zzn\comments\migrations\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\comments\__pycache__\admin.cpython-34.pyc" />
+    <Content Include="zzn\comments\__pycache__\forms.cpython-34.pyc" />
+    <Content Include="zzn\comments\__pycache__\models.cpython-34.pyc" />
+    <Content Include="zzn\comments\__pycache__\tests.cpython-34.pyc" />
+    <Content Include="zzn\comments\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\db.sqlite3" />
+    <Content Include="zzn\locale\en\LC_MESSAGES\django.mo" />
+    <Content Include="zzn\locale\en\LC_MESSAGES\django.po" />
+    <Content Include="zzn\locale\pl\LC_MESSAGES\django.mo" />
+    <Content Include="zzn\locale\pl\LC_MESSAGES\django.po" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0001_initial.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0002_auto_20151229_2114.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0003_remove_notifications_action.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0004_auto_20151230_1059.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0005_auto_20151230_1425.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\0006_remove_notifications_unread.cpython-34.pyc" />
+    <Content Include="zzn\notifications\migrations\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\admin.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\models.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\signals.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\tests.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\views.cpython-34.pyc" />
+    <Content Include="zzn\notifications\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0001_initial.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0002_profile_picture.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0003_auto_20151016_0845.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0004_profile_sport_choose.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0005_auto_20151016_0904.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0006_auto_20151016_1004.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0007_auto_20151017_1325.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0008_auto_20151102_1133.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0009_auto_20151106_1727.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0010_auto_20151210_1438.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0011_profile_picture2.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0012_auto_20151228_2226.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\0013_auto_20151229_2015.cpython-34.pyc" />
+    <Content Include="zzn\profiles\migrations\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\admin.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\forms.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\models.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\tests.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\views.cpython-34.pyc" />
+    <Content Include="zzn\profiles\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0001_initial.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0002_auto_20151111_1841.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0003_auto_20151111_1848.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0004_auto_20151112_1111.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0005_auto_20151112_1132.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0006_auto_20151112_1254.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0007_auto_20151112_1256.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0008_members.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0009_auto_20151228_2215.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0010_auto_20160205_1041.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0011_auto_20160205_1101.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0012_auto_20160205_1139.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0013_auto_20160410_1857.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0014_events_players.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\0015_delete_city.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\migrations\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\admin.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\forms.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\models.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\tests.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\views.cpython-34.pyc" />
+    <Content Include="zzn\sport_event\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\templates\account\base.html" />
+    <Content Include="zzn\templates\account\email.html" />
+    <Content Include="zzn\templates\account\email\email_confirmation_message.txt" />
+    <Content Include="zzn\templates\account\email\email_confirmation_signup_message.txt" />
+    <Content Include="zzn\templates\account\email\email_confirmation_signup_subject.txt" />
+    <Content Include="zzn\templates\account\email\email_confirmation_subject.txt" />
+    <Content Include="zzn\templates\account\email\password_reset_key_message.txt" />
+    <Content Include="zzn\templates\account\email\password_reset_key_subject.txt" />
+    <Content Include="zzn\templates\account\email_confirm.html" />
+    <Content Include="zzn\templates\account\email_confirmed.html" />
+    <Content Include="zzn\templates\account\login.html" />
+    <Content Include="zzn\templates\account\logout.html" />
+    <Content Include="zzn\templates\account\messages\cannot_delete_primary_email.txt" />
+    <Content Include="zzn\templates\account\messages\email_confirmation_sent.txt" />
+    <Content Include="zzn\templates\account\messages\email_confirmed.txt" />
+    <Content Include="zzn\templates\account\messages\email_deleted.txt" />
+    <Content Include="zzn\templates\account\messages\logged_in.txt" />
+    <Content Include="zzn\templates\account\messages\logged_out.txt" />
+    <Content Include="zzn\templates\account\messages\password_changed.txt" />
+    <Content Include="zzn\templates\account\messages\password_set.txt" />
+    <Content Include="zzn\templates\account\messages\primary_email_set.txt" />
+    <Content Include="zzn\templates\account\messages\unverified_primary_email.txt" />
+    <Content Include="zzn\templates\account\password_change.html" />
+    <Content Include="zzn\templates\account\password_reset.html" />
+    <Content Include="zzn\templates\account\password_reset_done.html" />
+    <Content Include="zzn\templates\account\password_reset_from_key.html" />
+    <Content Include="zzn\templates\account\password_reset_from_key_done.html" />
+    <Content Include="zzn\templates\account\password_set.html" />
+    <Content Include="zzn\templates\account\signup.html" />
+    <Content Include="zzn\templates\account\signup_closed.html" />
+    <Content Include="zzn\templates\account\snippets\already_logged_in.html" />
+    <Content Include="zzn\templates\account\verification_sent.html" />
+    <Content Include="zzn\templates\account\verified_email_required.html" />
+    <Content Include="zzn\templates\base.html" />
+    <Content Include="zzn\templates\dashboard\dashboard.html" />
+    <Content Include="zzn\templates\dashboard\remove.html" />
+    <Content Include="zzn\templates\dashboard\test.html" />
+    <Content Include="zzn\templates\done.html" />
+    <Content Include="zzn\templates\event\create_event.html" />
+    <Content Include="zzn\templates\event\detail_event.html" />
+    <Content Include="zzn\templates\event\edit.html" />
+    <Content Include="zzn\templates\event\ind_event.html" />
+    <Content Include="zzn\templates\event\ind_event_map.html" />
+    <Content Include="zzn\templates\event\your_event.html" />
+    <Content Include="zzn\templates\extra_head_info.html" />
+    <Content Include="zzn\templates\home.html" />
+    <Content Include="zzn\templates\javascript.html" />
+    <Content Include="zzn\templates\navbar.html" />
+    <Content Include="zzn\templates\notifications\all.html" />
+    <Content Include="zzn\templates\openid\base.html" />
+    <Content Include="zzn\templates\openid\login.html" />
+    <Content Include="zzn\templates\profile_edit_view.html" />
+    <Content Include="zzn\templates\profile_view.html" />
+    <Content Include="zzn\templates\socialaccount\authentication_error.html" />
+    <Content Include="zzn\templates\socialaccount\base.html" />
+    <Content Include="zzn\templates\socialaccount\connections.html" />
+    <Content Include="zzn\templates\socialaccount\login_cancelled.html" />
+    <Content Include="zzn\templates\socialaccount\messages\account_connected.txt" />
+    <Content Include="zzn\templates\socialaccount\messages\account_connected_other.txt" />
+    <Content Include="zzn\templates\socialaccount\messages\account_disconnected.txt" />
+    <Content Include="zzn\templates\socialaccount\signup.html" />
+    <Content Include="zzn\templates\socialaccount\snippets\login_extra.html" />
+    <Content Include="zzn\templates\socialaccount\snippets\provider_list.html" />
+    <Content Include="zzn\templates\welcome.html" />
+    <Content Include="zzn\zzn\base.html" />
+    <Content Include="zzn\zzn\__pycache__\settings.cpython-34.pyc" />
+    <Content Include="zzn\zzn\__pycache__\settings.cpython-35.pyc" />
+    <Content Include="zzn\zzn\__pycache__\urls.cpython-34.pyc" />
+    <Content Include="zzn\zzn\__pycache__\views.cpython-34.pyc" />
+    <Content Include="zzn\zzn\__pycache__\wsgi.cpython-34.pyc" />
+    <Content Include="zzn\zzn\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="zzn\zzn\__pycache__\__init__.cpython-35.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{4aaafad9-1f00-45f7-a2cc-e6193e77777f}</Id>
+      <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env (Python 64-bit 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="zzn\comments\admin.py" />
+    <Compile Include="zzn\comments\forms.py" />
+    <Compile Include="zzn\comments\migrations\0001_initial.py" />
+    <Compile Include="zzn\comments\migrations\0002_comment_event.py" />
+    <Compile Include="zzn\comments\migrations\0003_comment_parent.py" />
+    <Compile Include="zzn\comments\migrations\0004_auto_20151228_2215.py" />
+    <Compile Include="zzn\comments\migrations\__init__.py" />
+    <Compile Include="zzn\comments\models.py" />
+    <Compile Include="zzn\comments\tests.py" />
+    <Compile Include="zzn\comments\views.py" />
+    <Compile Include="zzn\comments\__init__.py" />
+    <Compile Include="zzn\manage.py" />
+    <Compile Include="zzn\notifications\admin.py" />
+    <Compile Include="zzn\notifications\migrations\0001_initial.py" />
+    <Compile Include="zzn\notifications\migrations\0002_auto_20151229_2114.py" />
+    <Compile Include="zzn\notifications\migrations\0003_remove_notifications_action.py" />
+    <Compile Include="zzn\notifications\migrations\0004_auto_20151230_1059.py" />
+    <Compile Include="zzn\notifications\migrations\0005_auto_20151230_1425.py" />
+    <Compile Include="zzn\notifications\migrations\0006_remove_notifications_unread.py" />
+    <Compile Include="zzn\notifications\migrations\__init__.py" />
+    <Compile Include="zzn\notifications\models.py" />
+    <Compile Include="zzn\notifications\signals.py" />
+    <Compile Include="zzn\notifications\tests.py" />
+    <Compile Include="zzn\notifications\views.py" />
+    <Compile Include="zzn\notifications\__init__.py" />
+    <Compile Include="zzn\profiles\admin.py" />
+    <Compile Include="zzn\profiles\forms.py" />
+    <Compile Include="zzn\profiles\migrations\0001_initial.py" />
+    <Compile Include="zzn\profiles\migrations\0002_profile_picture.py" />
+    <Compile Include="zzn\profiles\migrations\0003_auto_20151016_0845.py" />
+    <Compile Include="zzn\profiles\migrations\0004_profile_sport_choose.py" />
+    <Compile Include="zzn\profiles\migrations\0005_auto_20151016_0904.py" />
+    <Compile Include="zzn\profiles\migrations\0006_auto_20151016_1004.py" />
+    <Compile Include="zzn\profiles\migrations\0007_auto_20151017_1325.py" />
+    <Compile Include="zzn\profiles\migrations\0008_auto_20151102_1133.py" />
+    <Compile Include="zzn\profiles\migrations\0009_auto_20151106_1727.py" />
+    <Compile Include="zzn\profiles\migrations\0010_auto_20151210_1438.py" />
+    <Compile Include="zzn\profiles\migrations\0011_profile_picture2.py" />
+    <Compile Include="zzn\profiles\migrations\0012_auto_20151228_2226.py" />
+    <Compile Include="zzn\profiles\migrations\0013_auto_20151229_2015.py" />
+    <Compile Include="zzn\profiles\migrations\__init__.py" />
+    <Compile Include="zzn\profiles\models.py" />
+    <Compile Include="zzn\profiles\tests.py" />
+    <Compile Include="zzn\profiles\views.py" />
+    <Compile Include="zzn\profiles\__init__.py" />
+    <Compile Include="zzn\sport_event\admin.py" />
+    <Compile Include="zzn\sport_event\forms.py" />
+    <Compile Include="zzn\sport_event\migrations\0001_initial.py" />
+    <Compile Include="zzn\sport_event\migrations\0002_auto_20151111_1841.py" />
+    <Compile Include="zzn\sport_event\migrations\0003_auto_20151111_1848.py" />
+    <Compile Include="zzn\sport_event\migrations\0004_auto_20151112_1111.py" />
+    <Compile Include="zzn\sport_event\migrations\0005_auto_20151112_1132.py" />
+    <Compile Include="zzn\sport_event\migrations\0006_auto_20151112_1254.py" />
+    <Compile Include="zzn\sport_event\migrations\0007_auto_20151112_1256.py" />
+    <Compile Include="zzn\sport_event\migrations\0008_members.py" />
+    <Compile Include="zzn\sport_event\migrations\0009_auto_20151228_2215.py" />
+    <Compile Include="zzn\sport_event\migrations\0010_auto_20160205_1041.py" />
+    <Compile Include="zzn\sport_event\migrations\0011_auto_20160205_1101.py" />
+    <Compile Include="zzn\sport_event\migrations\0012_auto_20160205_1139.py" />
+    <Compile Include="zzn\sport_event\migrations\0013_auto_20160410_1857.py" />
+    <Compile Include="zzn\sport_event\migrations\0014_events_players.py" />
+    <Compile Include="zzn\sport_event\migrations\0015_delete_city.py" />
+    <Compile Include="zzn\sport_event\migrations\__init__.py" />
+    <Compile Include="zzn\sport_event\models.py" />
+    <Compile Include="zzn\sport_event\tests.py" />
+    <Compile Include="zzn\sport_event\views.py" />
+    <Compile Include="zzn\sport_event\__init__.py" />
+    <Compile Include="zzn\zzn\settings.py" />
+    <Compile Include="zzn\zzn\urls.py" />
+    <Compile Include="zzn\zzn\views.py" />
+    <Compile Include="zzn\zzn\wsgi.py" />
+    <Compile Include="zzn\zzn\__init__.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
