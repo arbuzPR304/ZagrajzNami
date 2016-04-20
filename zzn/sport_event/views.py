@@ -46,13 +46,13 @@ def add_new_sport_env(request):
 	return render(request,"event\create_event.html",context)
 
 
-@login_required
 def find_sport_env(request):
-	try:
-		temp = Profile.objects.get(user=request.user)
-		a = temp.picture.url
-	except:
-		return redirect('edit')
+	if request.user.is_authenticated():
+		try:
+			temp = Profile.objects.get(user=request.user)
+			a = temp.picture.url
+		except:
+			return redirect('edit')
 
 	if request.method == 'POST':
 		form = FindForm(request.POST)
@@ -83,13 +83,14 @@ def find_sport_env(request):
 	}
 	return render(request,"event\ind_event.html",context)
 
-@login_required
+#@login_required
 def sport_env_detail(request, id):
-	try:
-		temp = Profile.objects.get(user=request.user)
-		a = temp.picture.url
-	except:
-		return redirect('edit')
+	if request.user.is_authenticated():
+		try:
+			temp = Profile.objects.get(user=request.user)
+			a = temp.picture.url
+		except:
+			return redirect('edit')
 
 	event = Events.objects.get(id=id)
 	profile = Profile.objects.get(user = event.organizer)

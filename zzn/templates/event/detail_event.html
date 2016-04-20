@@ -212,7 +212,7 @@
 
     <div class="row">
 
-        <div class="col-md-4 col-xs-12">
+        <div class="col-md-5 col-xs-12">
             <div class="col-md-6 col-xs-6"><p align="center">Organizator: </p><br>
             </div>
             <div class="col-md-6 col-xs-6">
@@ -234,8 +234,10 @@
                 <div class="col-md-6 col-xs-6"><p align="center">{{event.profession_choose.name}}</p></div>
 
         </div>
+			{% if request.user.is_authenticated %}
                 <div class="col-md-6 col-xs-6"><p align="center">Ilość zawodników:</p></div>
                 <div class="col-md-6 col-xs-6"><p align="center">Wolne miejsca:</p></div>
+			{% endif %}
             
             <div class="quantity" style="font-size:30px">
                 <div class="col-md-6 col-xs-6"><p align="center" id="howPlayers"></p></div>
@@ -248,7 +250,7 @@
             
 
             <div class="quantity" style="font-size:25px">
-                <div class="col-md-6 col-xs-6"><p align="center">{{event.date_event|date:"j-n-Y"}}</p></div>
+                <div class="col-md-6 col-xs-6"><p align="center">{{event.date_event|date:"d N Y"}}</p></div>
                 <div class="col-md-6 col-xs-6"><p align="center">{{event.time_event|time:"H:i"}}</p></div>
             </div>
 
@@ -264,20 +266,25 @@
             
             
             <div class="quantity">
-                <div class="col-md-12 col-xs-12"><p align="center" id="maxiAmount"><button id="changeEnv" class=""></button></p></div>
-                
+                <div class="col-md-12 col-xs-12">
+					<p align="center" id="maxiAmount">
+						{% if request.user.is_authenticated %}
+						<button id="changeEnv" class=""></button>
+						{% endif %}
+					</p>
+				</div> 
             </div>
         </div>
         
         <div class="col-md-0 col-xs-1"></div>
 
-        <div class="col-md-8 col-xs-11">
+        <div class="col-md-7 col-xs-11">
                 <div id="mapka"></div> 
         </div>
 
 
     </div>
-
+	{% if request.user.is_authenticated %}
     <div class="row">
 
          <div class="row row2">
@@ -292,6 +299,7 @@
 
         
         </div>
+	{% endif %}
 
     <div class="row" id ="rules">
          <div class="row row2">
@@ -310,30 +318,33 @@
                 <h1 class="page-header">
                     Komentarze 
                 </h1>
-                {% if comment_form %}
-                    Napisane {{comments.count}} komentarze na 30 dozwolonych.
-                    <form method ="POST" action=''>{%csrf_token%}
-                        {{comment_form| crispy}}
-                        <input type='submit' class="tn btn-success btn-lg" value='Skomentuj'/>
-                    </form>
-                {% else %}
-                    <button class="tn btn-warning btn-lg">Nie można dodać więcej komentarzy</button>
-                    <br>
-                {% endif %}
-                <br/>
-                <table class='table'>
-                    {% for comment in comments %}
-                    <tr><td>{{ comment.get_comment }} 
-                        <br/><small>Dodane przez <a href="/profile/{{ comment.user }}">{{ comment.user }}</a> | {{ comment.timestamp|timesince }} temu </small>
-                        {% if not comment.is_child %}
-                        <ul>
-                            {% for child in comment.get_children %}
-                                <li>{{ child.get_comment }} <small>Dodane przez <a href="/profile/{{ child.user }}" target="_blank">{{ child.user }}</a></small></li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </td></tr>
-                    {% endfor %}
+				{% if request.user.is_authenticated %}
+					{% if comment_form %}
+						Napisane {{comments.count}} komentarze na 30 dozwolonych.
+						<form method ="POST" action=''>{%csrf_token%}
+							{{comment_form| crispy}}
+							<input type='submit' class="tn btn-success btn-lg" value='Skomentuj'/>
+						</form>
+					{% else %}
+						<button class="tn btn-warning btn-lg">Nie można dodać więcej komentarzy</button>
+						<br>
+					{% endif %}
+					<br/>
+				{% endif %}
+					<table class='table'>
+						{% for comment in comments %}
+						<tr><td>{{ comment.get_comment }} 
+							<br/><small>Dodane przez <a href="/profile/{{ comment.user }}">{{ comment.user }}</a> | {{ comment.timestamp|timesince }} temu </small>
+							{% if not comment.is_child %}
+							<ul>
+								{% for child in comment.get_children %}
+									<li>{{ child.get_comment }} <small>Dodane przez <a href="/profile/{{ child.user }}" target="_blank">{{ child.user }}</a></small></li>
+								{% endfor %}
+							</ul>
+							{% endif %}
+						</td></tr>
+						{% endfor %}
+					
                 </table>
             </div>
         </div>

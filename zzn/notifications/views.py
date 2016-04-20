@@ -35,7 +35,7 @@ def read(request, id):
 			raise Http404
 	except:
 		raise HttpResponseRedirect(reverse("notifications_all"))
-@login_required
+
 def get_notifications_ajax(request):
 	notifications = Notifications.objects.all_for_user(request.user).recent()
 	count = notifications.count()

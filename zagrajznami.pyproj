@@ -63,6 +63,7 @@
     <Folder Include="static\media_root\Wilku_wdz\" />
     <Folder Include="static\static_dirs\" />
     <Folder Include="static\static_dirs\css\" />
+    <Folder Include="static\static_dirs\css\dashboard\" />
     <Folder Include="static\static_dirs\fonts\" />
     <Folder Include="static\static_dirs\img\" />
     <Folder Include="static\static_dirs\img\png\" />
@@ -158,6 +159,15 @@
     <Content Include="static\static_dirs\css\custom.css" />
     <Content Include="static\static_dirs\css\font-awesome.min.css" />
     <Content Include="static\static_dirs\css\landing-page.css" />
+    <Content Include="static\static_dirs\css\dashboard\bootstrap.min.css" />
+    <Content Include="static\static_dirs\css\dashboard\bootstrap.min.js" />
+    <Content Include="static\static_dirs\css\dashboard\ie-emulation-modes-warning.js" />
+    <Content Include="static\static_dirs\css\dashboard\ie10-viewport-bug-workaround.css" />
+    <Content Include="static\static_dirs\css\dashboard\ie10-viewport-bug-workaround.js" />
+    <Content Include="static\static_dirs\css\dashboard\jquery.min.js" />
+    <Content Include="static\static_dirs\css\dashboard\navbar.css" />
+    <Content Include="static\static_dirs\css\dashboard\sidebar.css" />
+    <Content Include="static\static_dirs\css\dashboard\sidebar.js" />
     <Content Include="static\static_dirs\css\your_view.css" />
     <Content Include="static\static_dirs\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="static\static_dirs\img\ball3.png" />
